@@ -14,26 +14,28 @@ class control_arduino:
 		time.sleep(2)
 		print("ok")
 
-	def run(self):
+	def blink(self):
 		while True:
 			self.board.digital[13].write(1)
 			time.sleep(2)
 			self.board.digital[13].write(0)
 			time.sleep(2)
 
-
+	def setLed(self, data):
+		self.board.digital[13].write(data)
 
 if __name__ == '__main__':
 	if len(sys.argv)>1:
 		try:
 			ard=control_arduino(sys.argv[1])
-			ard.run()
+			ard.blink()
 		except Exception as e:
 			print(e)
 			sys.exit(1)
 	else:
 		try:
 			control_arduino("/dev/ttyACM0")
+			ard.blink()
 		except Exception as e:
 			print(e)
 			sys.exit(1)
