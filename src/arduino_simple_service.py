@@ -9,7 +9,8 @@ from std_srvs.srv import SetBool, SetBoolResponse
 class service_server:
 	def __init__(self):
 		rospy.init_node("arduino_control")
-		self.ard=control_arduino("/dev/ttyUSB0")
+		port=rospy.get_param("~port", "/dev/ttyACM0")
+		self.ard=control_arduino(port)
 		rospy.Service("arduino_simple_server",SetBool,self.handle_service)
 		rospy.loginfo("arduino service launched")
 		rospy.spin()
