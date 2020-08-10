@@ -15,7 +15,7 @@ source devel/setup.bash
 sudo apt-get install curl
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
-pip install pyfirmata
+python -m pip install pyfirmata
 ```
 
 # source
